@@ -78,6 +78,7 @@ qc_mf.run(  cost_func,                      # Cost function to use
             on_ansatz_ftn=None)             # Function for ansatz between building and operating e.g. pm.run()
 
 #########<<< ADAPT-VQE
+
 qc_mf = ADAPT_VQE(  mol           = mol,                # gto.Mole Object
                     mf            = mf,                 # PySCF's scf or dft Object
                     ex_code       = 'sd',               # Excitation Code: (sd)
@@ -127,7 +128,7 @@ UCC(mol, mf, ex_code='sd', mapping='jordan_wigner',
     
 < Arguments >
 - mol (pyscf.gto.Mole)      – Molecule object.
-- mf (pyscf.scf.HF or DFT)  – PySCF mean-field solution.
+- mf (pyscf.scf.HF or DFT)  – PySCF HF or KS object.
 - ex_code (str)             – Excitation type ('s', 'd', 'sd').
 - mapping (str)             – Fermion-to-qubit mapping ('jordan_wigner').
 - cd_acc (float)            – Cholesky decomposition accuracy.
@@ -163,11 +164,11 @@ ADAPT_VQE(mol, mf, ex_code='sd', mapping='jordan_wigner',
           
 < Arguments >
 
-- mol, mf             – PySCF molecule and mean-field objects.
+- mol, mf             – PySCF molecule and (HF or KS) object. objects.
 - ex_code (str)       – Excitation type ('s', 'd', 'sd').
 - mapping (str)       – Fermion-to-qubit mapping.
-- cd_acc (float)      – Cholesky accuracy.
-- max_cycle (int)     – Maximum ADAPT iterations.
+- cd_acc (float)      – Cholesky Decomposition accuracy.
+- max_cycle (int)     – Maximum ADAPT-VQE iterations.
 - max_iteration (int) – Max optimizer iterations.
 - energy_conv (float) – Energy convergence threshold.
 - grad_conv (float)   – Gradient convergence threshold.
@@ -200,7 +201,7 @@ ADAPT_VQE(mol, mf, ex_code='sd', mapping='jordan_wigner',
 ### qc4pyscf.operator
 
 #### Second_Quantization.gen_H(qc_mf, mapper='jordan_wigner', cd_acc=1e-6)
-Build Hamiltonian from PySCF mean-field.
+Build Hamiltonian from PySCF HF or KS object.
 
 #### Second_Quantization.creators_destructors(n, mapping)
 Generate creation/annihilation operators.
@@ -209,7 +210,7 @@ Generate creation/annihilation operators.
 Build excitation operator pools.
 
 #### Commute.get_commutator(A, B), get_commutators(A, Bs)
-Compute commutators.
+Compute commutators (operators in classical computer).
 
 #### RDM.make_rdm1(...), make_rdm1s(...), mo2ao(...)
 Build reduced density matrices.
