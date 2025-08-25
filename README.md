@@ -43,9 +43,9 @@ pip install -e .
 Construct a Hartree–Fock reference state.
 
 Arguments
-- N_orb (int)     – Number of spatial orbitals.
-- N_alpha (int)   – Number of α-spin electrons.
-- N_beta (int)    – Number of β-spin electrons.
+- N_orb (int)\     – Number of spatial orbitals.
+- N_alpha (int)\   – Number of α-spin electrons.
+- N_beta (int)\    – Number of β-spin electrons.
 
 Returns
 - QuantumCircuit – Circuit with X gates applied to occupied orbitals.
