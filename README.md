@@ -33,7 +33,74 @@ pip install -e .
 
 ## 🔥 Quick Example
 ```
-123
+from qiskit.primitives import StatevectorEstimator as Estimator
+from qc4pyscf.ansatz.ADAPT_VQE import ADAPT_VQE
+from qc4pyscf.ansatz.UCC import UCC
+from pyscf import gto,scf,fci
+
+mol     = gto.M(atom = "H 0.000000 0.000000 0; H 0.000000 0.000000 0.720000", 
+                basis = "sto3g",
+                charge = 0,
+                spin = 0,
+                verbose = 0)
+
+# 2. Make HF object and run
+mf      = scf.RHF(mol)
+E_hf    = mf.kernel()
+
+# Code for reference
+mf_fci  = fci.FCI(mf)
+E_fci   = mf_fci.kernel()[0]
+
+print(f" HF: {E_hf:.3f} Hartree\nFCI: {E_fci:.3f} Hartree\n\nCorrelation Energy: {E_fci - E_hf:.3f} Hartree")
+
+def cost_func(params, ansatz, H, estimator):
+    res = estimator.run([(ansatz, H, params)]).result()
+    energy = res[0].data.evs
+    return energy
+
+#########<<< UCCSD
+
+qc_mf = UCC(mol           = mol,                # gto.Mole Object
+            mf            = mf,                 # PySCF's scf or dft Object
+            ex_code       = 'sd',               # Excitation Code: (sd)
+            mapping       = 'jordan_wigner',    # Mapping: (jordan_wignar)
+            cd_acc        = 1e-6,               # Cholesty Decomposition Accuracy
+            max_iteration = 200000,             # Minimizer Maximum Iteration
+            amplitudes    = [],                 # Amplitudes of Excitation Evolvers
+            spin_symm     = True)               # Excitation Spin Symmetry (It changes into False if the system is open shell)
+            
+qc_mf.build()
+
+qc_mf.run(  cost_func,                      # Cost function to use
+            Estimator(),                    # Quantum estimator
+            minimize_algorithm='COBYLA',    # Mimization Algorithm for scipy minimize
+            on_ansatz_ftn=None)             # Function for ansatz between building and operating e.g. pm.run()
+
+#########<<< ADAPT-VQE
+qc_mf = ADAPT_VQE(  mol           = mol,                # gto.Mole Object
+                    mf            = mf,                 # PySCF's scf or dft Object
+                    ex_code       = 'sd',               # Excitation Code: (sd)
+                    mapping       = 'jordan_wigner',    # Mapping: (jordan_wignar)
+                    cd_acc        = 1e-6,               # Cholesky Decomposition Accuracy
+                    energy_conv   = 1e-6,               # Energy Converge Tolerance
+                    grad_conv     = 1e-2,               # 2-Norm of Gradient Vector Converge Tolerance
+                    conv_type     = 0,                  # 0: Grad | 1: Energy | 2: Grad and Energy
+                    max_cycle     = 50,                 # ADAPT-VQE Maximum Cycle
+                    max_iteration = 200000,             # Minimizer Maximum Iteration
+                    initial       = None,               # Initial Ansatz JSON Directory
+                    chkfile       = None,               # Chkfile Directory
+                    spin_symm     = True)               # Spin Symmetry
+            
+# 2. Build QC Ingredients
+qc_mf.build()
+
+# 3. Run UCC Algorithm
+qc_mf.run(  cost_func,                      # Cost function to use
+            Estimator(),                    # Quantum estimator
+            minimize_algorithm='BFGS',      # Mimization Algorithm for scipy minimize
+            on_ansatz_ftn=None)             # Function for ansatz between building and operating e.g. pm.run()
+
 ```
 ---
 
@@ -43,9 +110,9 @@ pip install -e .
 Construct a Hartree–Fock reference state.
 
 Arguments
-- N_orb (int)\     – Number of spatial orbitals.
-- N_alpha (int)\   – Number of α-spin electrons.
-- N_beta (int)\    – Number of β-spin electrons.
+- N_orb (int)     – Number of spatial orbitals.
+- N_alpha (int)   – Number of α-spin electrons.
+- N_beta (int)    – Number of β-spin electrons.
 
 Returns
 - QuantumCircuit – Circuit with X gates applied to occupied orbitals.
@@ -146,6 +213,8 @@ Compute commutators.
 
 #### RDM.make_rdm1(...), make_rdm1s(...), mo2ao(...)
 Build reduced density matrices.
+
+---
 
 ### qc4pyscf.tools
 
