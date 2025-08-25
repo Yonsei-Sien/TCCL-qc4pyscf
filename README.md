@@ -43,9 +43,9 @@ pip install -e .
 Construct a Hartree–Fock reference state.
 
 Arguments
-- N_orb (int) – Number of spatial orbitals.
-- N_alpha (int) – Number of α-spin electrons.
-- N_beta (int) – Number of β-spin electrons.
+- N_orb (int)     – Number of spatial orbitals.
+- N_alpha (int)   – Number of α-spin electrons.
+- N_beta (int)    – Number of β-spin electrons.
 
 Returns
 - QuantumCircuit – Circuit with X gates applied to occupied orbitals.
@@ -59,31 +59,31 @@ UCC(mol, mf, ex_code='sd', mapping='jordan_wigner',
     spin_symm=True, amplitudes=[])
     
 < Arguments >
-- mol (pyscf.gto.Mole) – Molecule object.
-- mf (pyscf.scf.HF or DFT) – PySCF mean-field solution.
-- ex_code (str) – Excitation type ('s', 'd', 'sd').
-- mapping (str) – Fermion-to-qubit mapping ('jordan_wigner').
-- cd_acc (float) – Cholesky decomposition accuracy.
-- max_iteration (int) – Optimizer max iterations.
-- spin_symm (bool) – Enforce spin symmetry (auto-disabled for open-shell).
-- amplitudes (list[float]) – Initial guess for amplitudes.
+- mol (pyscf.gto.Mole)      – Molecule object.
+- mf (pyscf.scf.HF or DFT)  – PySCF mean-field solution.
+- ex_code (str)             – Excitation type ('s', 'd', 'sd').
+- mapping (str)             – Fermion-to-qubit mapping ('jordan_wigner').
+- cd_acc (float)            – Cholesky decomposition accuracy.
+- max_iteration (int)       – Optimizer max iterations.
+- spin_symm (bool)          – Enforce spin symmetry (auto-disabled for open-shell).
+- amplitudes (list[float])  – Initial guess for amplitudes.
 
 < Attributes >
 
-- H (SparsePauliOp) – Hamiltonian.
-- ansatz (QuantumCircuit) – UCC ansatz circuit.
-- energy (float) – Final energy.
-- op_pool (list) – Operator pool.
-- op_ind (list) – Operator indices.
-- amplitudes (list[float]) – Excitation Amplitudes.
+- H (SparsePauliOp)         – Hamiltonian.
+- ansatz (QuantumCircuit)   – UCC ansatz circuit.
+- energy (float)            – Final energy.
+- op_pool (list)            – Operator pool.
+- op_ind (list)             – Operator indices.
+- amplitudes (list[float])  – Excitation Amplitudes.
 
 < Methods >
 
-- build() – Build Hamiltonian and ansatz.
+- build()                                                                    – Build Hamiltonian and ansatz.
 - run(cost_func, Estimator, minimize_algorithm='COBYLA', on_ansatz_ftn=None) – Optimize amplitudes.
-- energy_tot(cost_func, Estimator, on_ansatz_ftn=None) – Compute total energy.
-- quasi_distribution(Sampler, shot=100000) – Sample distribution.
-- make_rdm1(...), make_rdm1s(...) – Build reduced density matrices.
+- energy_tot(cost_func, Estimator, on_ansatz_ftn=None)                       – Compute total energy.
+- quasi_distribution(Sampler, shot=100000)                                   – Sample distribution.
+- make_rdm1(...), make_rdm1s(...)                                            – Build reduced density matrices.
 
 ---
 
@@ -96,37 +96,37 @@ ADAPT_VQE(mol, mf, ex_code='sd', mapping='jordan_wigner',
           
 < Arguments >
 
-- mol, mf – PySCF molecule and mean-field objects.
-- ex_code (str) – Excitation type ('s', 'd', 'sd').
-- mapping (str) – Fermion-to-qubit mapping.
-- cd_acc (float) – Cholesky accuracy.
-- max_cycle (int) – Maximum ADAPT iterations.
+- mol, mf             – PySCF molecule and mean-field objects.
+- ex_code (str)       – Excitation type ('s', 'd', 'sd').
+- mapping (str)       – Fermion-to-qubit mapping.
+- cd_acc (float)      – Cholesky accuracy.
+- max_cycle (int)     – Maximum ADAPT iterations.
 - max_iteration (int) – Max optimizer iterations.
 - energy_conv (float) – Energy convergence threshold.
-- grad_conv (float) – Gradient convergence threshold.
-- conv_type (int) – Convergence check type (0: grad, 1: energy, 2: both).
-- initial (str) – Path to saved JSON initial ansatz.
-- chkfile (str) – Path to save intermediate results.
-- spin_symm (bool) – Spin symmetry enforcement.
+- grad_conv (float)   – Gradient convergence threshold.
+- conv_type (int)     – Convergence check type (0: grad, 1: energy, 2: both).
+- initial (str)       – Path to saved JSON initial ansatz.
+- chkfile (str)       – Path to save intermediate results.
+- spin_symm (bool)    – Spin symmetry enforcement.
 
 < Attributes >
 
-- ansatz (QuantumCircuit) – Current ansatz.
-- op_pool (list) – Operator pool.
-- op_ind (list) – Operator indices.
-- energy (float) – Current energy.
-- grad_norm (float) – Norm of gradient.
+- ansatz (QuantumCircuit)  – Current ansatz.
+- op_pool (list)           – Operator pool.
+- op_ind (list)            – Operator indices.
+- energy (float)           – Current energy.
+- grad_norm (float)        – Norm of gradient.
 - amplitudes (list[float]) – Optimized amplitudes.
-- op_used (list) – Indices of selected operators.
-- is_converged (bool) – Whether algorithm converged.
+- op_used (list)           – Indices of selected operators.
+- is_converged (bool)      – Whether algorithm converged.
 
 < Methods >
 
-- build() – Build Hamiltonian, operators, and ansatz.
+- build()                                                                  – Build Hamiltonian, operators, and ansatz.
 - run(cost_func, Estimator, minimize_algorithm='BFGS', on_ansatz_ftn=None) – Run ADAPT-VQE loop.
-- save(dir) – Save amplitudes/operators to JSON.
-- energy_tot(...), quasi_distribution(...) – Evaluate results.
-- make_rdm1(...), make_rdm1s(...) – Build reduced density matrices
+- save(dir)                                                                – Save amplitudes/operators to JSON.
+- energy_tot(...), quasi_distribution(...)                                 – Evaluate results.
+- make_rdm1(...), make_rdm1s(...)                                          – Build reduced density matrices
 
 ---
 
