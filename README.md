@@ -23,7 +23,7 @@ cd qc4pyscf
 pip install -e .
 ```
 
-< Requirements >
+### < Requirements >
 - qiskit
 - pyscf
 - numpy
@@ -31,30 +31,15 @@ pip install -e .
 
 ---
 
-🔥 Quick Example
+##🔥 Quick Example
 ```
-from pyscf import gto, scf
-from qiskit.primitives import Estimator
-from qc4pyscf.ansatz import UCC
-
-mol = gto.M(atom="H 0 0 0; H 0 0 0.74", basis="sto-3g")
-mf  = scf.RHF(mol).run()
-
-ucc = UCC.UCC(mol, mf, ex_code='sd')
-ucc.build()
-
-estimator = Estimator()
-energy = ucc.run(
-    lambda x, ansatz, H, est: est.run((ansatz, H, x)).result().values[0],
-    estimator
-)
-print("Final UCC Energy:", energy)
+123
 ```
 ---
 
-🧩 Module Reference  
+## 🧩 Module Reference  
 
-qc4pyscf.ansatz
+### qc4pyscf.ansatz
 
 Initial.initial(N_orb, N_alpha, N_beta) – Construct a Hartree–Fock reference state.
 
