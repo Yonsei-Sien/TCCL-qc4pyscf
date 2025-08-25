@@ -23,12 +23,13 @@ cd qc4pyscf
 pip install -e .
 ```
 
-Requirements
+< Requirements >
 - qiskit
 - pyscf
 - numpy
 - scipy
 
+---
 
 🔥 Quick Example
 ```
@@ -49,12 +50,13 @@ energy = ucc.run(
 )
 print("Final UCC Energy:", energy)
 ```
+---
 
+🧩 Module Reference  
 
-🧩 Module Reference
 qc4pyscf.ansatz
-Initial.initial(N_orb, N_alpha, N_beta)
-Construct a Hartree–Fock reference state.
+
+Initial.initial(N_orb, N_alpha, N_beta) – Construct a Hartree–Fock reference state.
 
 Arguments
 
