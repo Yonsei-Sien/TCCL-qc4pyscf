@@ -1,4 +1,5 @@
 # 🚀 qc4pyscf
+By G. Kim
 
 **qc4pyscf** is a Python toolkit that connects **PySCF** (quantum chemistry) with **Qiskit** (quantum computing).  
 It provides ansatz constructors (UCC, ADAPT-VQE), operator utilities, and tools for hybrid quantum–classical simulations.
@@ -18,7 +19,7 @@ It provides ansatz constructors (UCC, ADAPT-VQE), operator utilities, and tools 
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/Yonsei-Sien/qc4pyscf.git
+git clone https://github.com/Yonsei-Sien/TCCL-qc4pyscf.git
 cd qc4pyscf
 pip install -e .
 ```
