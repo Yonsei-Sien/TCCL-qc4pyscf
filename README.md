@@ -39,7 +39,8 @@ pip install -e .
 
 ## 🧩 Module Reference  
 
-### qc4pyscf.ansatz.Initial.initial(N_orb, N_alpha, N_beta) – Construct a Hartree–Fock reference state.
+### qc4pyscf.ansatz.Initial.initial(N_orb, N_alpha, N_beta)
+Construct a Hartree–Fock reference state.
 
 Arguments
 - N_orb (int) – Number of spatial orbitals.
@@ -49,6 +50,7 @@ Arguments
 Returns
 - QuantumCircuit – Circuit with X gates applied to occupied orbitals.
 
+---
 
 ### qc4pyscf.ansatz.UCC.UCC (class)
 
@@ -83,6 +85,7 @@ UCC(mol, mf, ex_code='sd', mapping='jordan_wigner',
 - quasi_distribution(Sampler, shot=100000) – Sample distribution.
 - make_rdm1(...), make_rdm1s(...) – Build reduced density matrices.
 
+---
 
 ### ADAPT_VQE.ADAPT_VQE (class)
 
@@ -124,6 +127,8 @@ ADAPT_VQE(mol, mf, ex_code='sd', mapping='jordan_wigner',
 - save(dir) – Save amplitudes/operators to JSON.
 - energy_tot(...), quasi_distribution(...) – Evaluate results.
 - make_rdm1(...), make_rdm1s(...) – Build reduced density matrices
+
+---
 
 ### qc4pyscf.operator
 
