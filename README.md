@@ -18,23 +18,20 @@ It provides ansatz constructors (UCC, ADAPT-VQE), operator utilities, and tools 
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/yourname/qc4pyscf.git
+git clone https://github.com/Yonsei-Sien/qc4pyscf.git
 cd qc4pyscf
 pip install -e .
+```
+
 Requirements
+- qiskit
+- pyscf
+- numpy
+- scipy
 
-qiskit
-
-pyscf
-
-numpy
-
-scipy
 
 🔥 Quick Example
-python
-복사
-편집
+```
 from pyscf import gto, scf
 from qiskit.primitives import Estimator
 from qc4pyscf.ansatz import UCC
@@ -51,6 +48,9 @@ energy = ucc.run(
     estimator
 )
 print("Final UCC Energy:", energy)
+```
+
+
 🧩 Module Reference
 qc4pyscf.ansatz
 Initial.initial(N_orb, N_alpha, N_beta)
