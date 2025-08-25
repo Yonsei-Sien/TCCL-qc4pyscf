@@ -59,7 +59,6 @@ UCC(mol, mf, ex_code='sd', mapping='jordan_wigner',
     cd_acc=1e-6, max_iteration=200000,
     spin_symm=True, amplitudes=[])
 Arguments
-
     - mol (pyscf.gto.Mole) – Molecule object.
     - mf (pyscf.scf.HF or DFT) – PySCF mean-field solution.
     - ex_code (str) – Excitation type ('s', 'd', 'sd').
