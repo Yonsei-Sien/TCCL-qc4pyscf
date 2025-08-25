@@ -42,22 +42,20 @@ pip install -e .
 ### qc4pyscf.ansatz.Initial.initial(N_orb, N_alpha, N_beta) – Construct a Hartree–Fock reference state.
 
 Arguments
-
-    N_orb (int) – Number of spatial orbitals.
-    
-    N_alpha (int) – Number of α-spin electrons.
-    
-    N_beta (int) – Number of β-spin electrons.
+- N_orb (int) – Number of spatial orbitals.
+- N_alpha (int) – Number of α-spin electrons.
+- N_beta (int) – Number of β-spin electrons.
 
 Returns
+- QuantumCircuit – Circuit with X gates applied to occupied orbitals.
 
-    QuantumCircuit – Circuit with X gates applied to occupied orbitals.
 
 ### qc4pyscf.ansatz.UCC.UCC (class)
 
 UCC(mol, mf, ex_code='sd', mapping='jordan_wigner',
     cd_acc=1e-6, max_iteration=200000,
     spin_symm=True, amplitudes=[])
+    
 Arguments
 - mol (pyscf.gto.Mole) – Molecule object.
 - mf (pyscf.scf.HF or DFT) – PySCF mean-field solution.
@@ -70,29 +68,20 @@ Arguments
 
 Attributes
 
-    H (SparsePauliOp) – Hamiltonian.
-    
-    ansatz (QuantumCircuit) – UCC ansatz circuit.
-    
-    energy (float) – Final energy.
-    
-    op_pool (list) – Operator pool.
-    
-    op_ind (list) – Operator indices.
-    
-    amplitudes (list[float]) – Optimized amplitudes.
+- H (SparsePauliOp) – Hamiltonian.
+- ansatz (QuantumCircuit) – UCC ansatz circuit.
+- energy (float) – Final energy.
+- op_pool (list) – Operator pool.
+- op_ind (list) – Operator indices.
+- amplitudes (list[float]) – Excitation Amplitudes.
 
 Methods
 
-    build() – Build Hamiltonian and ansatz.
-    
-    run(cost_func, Estimator, minimize_algorithm='COBYLA', on_ansatz_ftn=None) – Optimize amplitudes.
-    
-    energy_tot(cost_func, Estimator, on_ansatz_ftn=None) – Compute total energy.
-    
-    quasi_distribution(Sampler, shot=100000) – Sample distribution.
-    
-    make_rdm1(...), make_rdm1s(...) – Build reduced density matrices.
+- build() – Build Hamiltonian and ansatz.
+- run(cost_func, Estimator, minimize_algorithm='COBYLA', on_ansatz_ftn=None) – Optimize amplitudes.
+- energy_tot(cost_func, Estimator, on_ansatz_ftn=None) – Compute total energy.
+- quasi_distribution(Sampler, shot=100000) – Sample distribution.
+- make_rdm1(...), make_rdm1s(...) – Build reduced density matrices.
 
 ADAPT_VQE.ADAPT_VQE (class)
 
