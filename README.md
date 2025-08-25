@@ -59,14 +59,14 @@ UCC(mol, mf, ex_code='sd', mapping='jordan_wigner',
     cd_acc=1e-6, max_iteration=200000,
     spin_symm=True, amplitudes=[])
 Arguments
-    - mol (pyscf.gto.Mole) – Molecule object.
-    - mf (pyscf.scf.HF or DFT) – PySCF mean-field solution.
-    - ex_code (str) – Excitation type ('s', 'd', 'sd').
-    - mapping (str) – Fermion-to-qubit mapping ('jordan_wigner').
-    - cd_acc (float) – Cholesky decomposition accuracy.
-    - max_iteration (int) – Optimizer max iterations.
-    - spin_symm (bool) – Enforce spin symmetry (auto-disabled for open-shell).
-    - amplitudes (list[float]) – Initial guess for amplitudes.
+- mol (pyscf.gto.Mole) – Molecule object.
+- mf (pyscf.scf.HF or DFT) – PySCF mean-field solution.
+- ex_code (str) – Excitation type ('s', 'd', 'sd').
+- mapping (str) – Fermion-to-qubit mapping ('jordan_wigner').
+- cd_acc (float) – Cholesky decomposition accuracy.
+- max_iteration (int) – Optimizer max iterations.
+- spin_symm (bool) – Enforce spin symmetry (auto-disabled for open-shell).
+- amplitudes (list[float]) – Initial guess for amplitudes.
 
 Attributes
 
