@@ -19,7 +19,7 @@ It provides ansatz constructors (UCC, ADAPT-VQE), operator utilities, and tools 
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/Yonsei-Sien/TCCL-qc4pyscf.git
+git clone https://github.com/Yonsei-Sien/TCCL_qc4pyscf.git
 cd qc4pyscf
 pip install -e .
 ```
